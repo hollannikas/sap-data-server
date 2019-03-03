@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<COND_A>
+    <IDOC BEGIN="1">
+        <EDI_DC40 SEGMENT="1">
+            <TABNAM>EDI_DC40</TABNAM>
+            <MANDT>810</MANDT>
+            <DOCNUM>0000001521118279</DOCNUM>
+            <DOCREL>750</DOCREL>
+            <STATUS>30</STATUS>
+            <DIRECT>1</DIRECT>
+            <OUTMOD>4</OUTMOD>
+            <IDOCTYP>COND_A</IDOCTYP>
+            <MESTYP>COND_A</MESTYP>
+            <SNDPOR>SAPXXX</SNDPOR>
+            <SNDPRT>XX</SNDPRT>
+            <SNDPRN>XX_XXXXXX</SNDPRN>
+            <RCVPOR>API_GW_API</RCVPOR>
+            <RCVPRT>XX</RCVPRT>
+            <RCVPRN>APISERVICE</RCVPRN>
+            <CREDAT>20180824</CREDAT>
+            <CRETIM>160517</CRETIM>
+            <SERIAL>20180824160516</SERIAL>
+        </EDI_DC40>
+        <CONDH SEGMENT="1">
+            <KOTABNR>800</KOTABNR>
+            <KSCHL>ZKP0</KSCHL>
+            <VKORG>K000</VKORG>
+            <VTWEG>10</VTWEG>
+            <WERKS>F000</WERKS>
+            <MATNR>000000000500936115</MATNR>
+            <CONDP SEGMENT="1">
+                <KBETR>10.00</KBETR>
+                <KONWA>EUR</KONWA>
+                <KPEIN>1</KPEIN>
+                <KMEIN>KGM</KMEIN>
+                <DATAB>20180328</DATAB>
+                <DATBI>20180823</DATBI>
+            </CONDP>
+            <CONDP SEGMENT="1">
+                <KBETR>11.95</KBETR>
+                <KONWA>EUR</KONWA>
+                <KPEIN>1</KPEIN>
+                <KMEIN>KGM</KMEIN>
+                <DATAB>20180824</DATAB>
+                <DATBI>99991231</DATBI>
+            </CONDP>
+        </CONDH>
+        <CONDH SEGMENT="1">
+            <KOTABNR>800</KOTABNR>
+            <KSCHL>ZKP0</KSCHL>
+            <VKORG>K000</VKORG>
+            <VTWEG>10</VTWEG>
+            <WERKS>F000</WERKS>
+            <MATNR>000000000501523441</MATNR>
+            <CONDP SEGMENT="1">
+                <KBETR>9.95</KBETR>
+                <KONWA>EUR</KONWA>
+                <KPEIN>1</KPEIN>
+                <KMEIN>PCE</KMEIN>
+                <DATAB>20180824</DATAB>
+                <DATBI>99991231</DATBI>
+            </CONDP>
+        </CONDH>
+    </IDOC>
+</COND_A>
