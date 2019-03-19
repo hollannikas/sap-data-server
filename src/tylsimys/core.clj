@@ -2,7 +2,8 @@
   (:require [clojure.data.zip.xml :as zip-xml]
             [clojure.data.xml :as xml]
             [clojure.zip :as zip]
-            [clojure.java.io :as io]))
+            [clojure.java.io :as io]
+            [tylsimys.db :as db]))
 
 (defn element-content
   [element tag]
@@ -30,5 +31,11 @@
                  zip/xml-zip)]
     (mapv header->map (zip-xml/xml-> root :IDOC :CONDH))))
 
+(defn save-idoc
+  [filename]
+  ; TODO do we want to return something?
+  (doseq [header (parse-xml filename)]
+         (db/save-header header)))
+
 (comment
-  (parse-xml "test/tylsimys/TEST_COND_A.xml"))
+  (save-idoc "test/tylsimys/TEST_COND_A.xml"))
