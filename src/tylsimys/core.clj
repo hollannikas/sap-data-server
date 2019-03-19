@@ -1,35 +1,34 @@
 (ns tylsimys.core
-  (:use [clojure.data.zip.xml])
-  (:require [clojure.xml :as xml]
-            [clojure.zip :as zip]))
+  (:require [clojure.data.zip.xml :as zip-xml]
+            [clojure.data.xml :as xml]
+            [clojure.zip :as zip]
+            [clojure.java.io :as io]))
 
-(defn get-parts
+(defn element-content
+  [element tag]
+    (zip-xml/xml1-> element tag zip-xml/text))
+
+(defn part->map
+  [part]
+  {:price      (Double/valueOf (element-content part :KBETR))
+   :currency   (element-content part :KONWA)
+   :start-date (element-content part :DATAB)
+   :end-date   (element-content part :DATBI)})
+
+(defn header->map
   [header]
-  (xml-> header
-         :CONDP))
-
-(defn get-headers
-  [root]
-  (xml-> root
-         :IDOC
-         :CONDH))
+  {:type    (element-content header :KSCHL)
+   :store   (element-content header :VKORG)
+   :product (bigint (element-content header :MATNR))
+   :parts   (mapv part->map (zip-xml/xml-> header :CONDP))})
 
 (defn parse-xml
-  "Read xml from file name"
   [filename]
-  (zip/xml-zip
-    (xml/parse filename)))
-
-(defn -main
-  "I don't do a whole lot ... yet."
-  [& args]
-  (println
-    (get-headers
-      (parse-xml "test/tylsimys/TEST_COND_A.xml"))))
+  (let [root (-> filename
+                 io/reader
+                 xml/parse
+                 zip/xml-zip)]
+    (mapv header->map (zip-xml/xml-> root :IDOC :CONDH))))
 
 (comment
-  (map zip/node
-    (get-headers
-      (parse-xml "test/tylsimys/TEST_COND_A.xml")))
-  (xml-> (parse-xml "test/tylsimys/TEST_COND_A.xml")
-         :CONDH))
+  (parse-xml "test/tylsimys/TEST_COND_A.xml"))
