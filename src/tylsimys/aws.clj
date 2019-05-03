@@ -17,9 +17,13 @@
 
 (defn s3object->database
   [map]
-  (-> (s3/get-object (:bucket map) (:key map))
-      :input-stream
-      core/save-idoc))
+  (let [bucket (:bucket map)
+        key (:key map)]
+    (if (clojure.string/ends-with? key ".xml")
+      (-> (s3/get-object bucket key)
+          :input-stream
+          core/save-idoc)
+      (println "Not an XML file"))))
 
 (defn record->s3object
   [record]

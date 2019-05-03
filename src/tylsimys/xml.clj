@@ -5,11 +5,9 @@
             [clojure.java.io :as io]
             [tylsimys.db :as db]))
 
-; postwalk -> zip -> data.xml => process
-
 (defn element-content
   [element tag]
-    (zip-xml/xml1-> element tag zip-xml/text))
+  (zip-xml/xml1-> element tag zip-xml/text))
 
 (defn part->map
   [part]
@@ -37,12 +35,13 @@
   [source]
   ; TODO do we want to return something?
   (doseq [header (parse-xml source)]
-         (db/save-header header)))
+    (db/save-header header)))
 
 (comment
+  (save-idoc "test/tylsimys/TEST_COND_A.xml")
   (parse-xml "test/tylsimys/TEST_COND_A.xml")
   (-> "test/tylsimys/TEST_COND_A.xml"
       io/reader
       xml/parse
-      zip/xml-zip)
-  )
+      zip/xml-zip))
+  
