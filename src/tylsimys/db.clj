@@ -18,7 +18,7 @@
            (table :headers)
            (database korma-db)
            (entity-fields
-             :price
+             :product
              :store
              :type))
 
